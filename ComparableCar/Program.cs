@@ -20,6 +20,32 @@ namespace ComparableCar
             myAutos[4] = new Car("Chucky", 40, 5);
             Console.ReadLine();
 
+            // display current array
+            Console.WriteLine("Here is unordered set of cars:");
+            foreach(Car c in myAutos)
+                Console.WriteLine("{0} {1}", c.CarID, c.PetName);
+
+            // and now sorted
+            Array.Sort(myAutos);
+            Console.WriteLine();
+
+            // Display sorted array
+            Console.WriteLine("Here is the ordered set of cars:");
+            foreach(Car c in myAutos)
+                Console.WriteLine("{0} {1}", c.CarID, c.PetName);
+            Console.ReadLine();
+
+            // now sort by pet name
+            Array.Sort(myAutos, new PetNameComparer());
+
+            // Dump sorted array
+            Console.WriteLine("Ordering by pet name:");
+            foreach (Car c in myAutos)
+                Console.WriteLine("{0} {1}", c.CarID, c.PetName);
+
+            Array.Sort(myAutos, Car.SortByPetName);
+
+            Console.ReadLine();
 
         }
     }

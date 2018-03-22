@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace ComparableCar
 
         // A car has-a radio.
         private Radio theMusicBox = new Radio();
+
+        // property to return the PetNameComparer
+        public static IComparer SortByPetName
+        {
+            get
+            {
+                return (IComparer) new PetNameComparer();
+            }
+            
+        }
 
         // Constructors.
         public Car()
@@ -53,16 +64,7 @@ namespace ComparableCar
         {
             Car temp = obj as Car;
             if (temp != null)
-            {
-                if (this.CarID > temp.CarID)
-                    return 1;
-                if (this.CarID < temp.CarID)
-                    return -1;
-                else
-                {
-                    return 0;
-                }
-            }
+                return this.CarID.CompareTo(temp.CarID);
             else
                 throw new ArgumentException("Parameter is not a Car!");
         }
